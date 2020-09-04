@@ -8,7 +8,7 @@ import os
 import math
 
 local_server="True"
-with open("D:\\Major Projects\\Flask\\templates\\json.config",'r') as f1:
+with open(".\templates\json.config",'r') as f1:
 	params=json.load(f1)["params"]
 
 
