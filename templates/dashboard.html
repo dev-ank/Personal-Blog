@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block body %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static',filename='img/dash.jpg') }}');padding:5px;">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1 style="color:whitesmoke;">Welcome to Dashboard</h1>
+			<span class="subheading">Upload/edit your posts here</span>
+			
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+		<h3>Basic Actions:</h3>
+		<a href="/edit/0"><button class="btn btn-primary">Add a new post</button></a>
+		<a href="/logout"><button class="btn btn-primary">Logout</button></a>
+		<hr>
+		<h3>Upload Image:</h3>
+		<form action="/uploader" method="post" enctype="multipart/form-data">
+			<input type="file" name="file1"><br><br>
+			<button type="submit" class="btn btn-primary">Submit<button>
+				<hr>
+		  <hr>
+		</form>
+		  
+		<h1>Edit your posts:</h1>
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">sno</th>
+				<th scope="col">title</th>
+				<th scope="col">date</th>
+				<th scope="col">edit</th>
+				<th scope="col">delete</th>
+			  </tr>
+			</thead>
+			<tbody>
+			{% for post in posts %}
+			  <tr>
+				<th scope="row">{{post.sno}}</th>
+				<td>{{post.title}}</td>
+				<td>{{post.date}}</td>
+				<td><a href="/edit/{{post.sno}}"><button class="btn btn-success">Edit</button></a></td>
+				<td><a href="/delete/{{post.sno}}"><button class="btn btn-success">delete</button></a></td>
+			  </tr>
+			{% endfor %}
+			</tbody>
+		  </table>
+        
+       
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+{% endblock %}
